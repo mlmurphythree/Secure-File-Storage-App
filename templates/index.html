@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure File Storage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Secure File Storage</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit" value="Upload">
+        </form>
+        
+        <h2>Files Available for Download</h2>
+        <ul>
+            {% for file in files %}
+            <li>
+                {{ file }}
+                <a href="{{ url_for('download', filename=file) }}">Download</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
